@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規会員登録</title>
+    
+    <!-- 既存のCSSファイル -->
+    <link rel="stylesheet" href="/css/sign-up.css">
+    
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+    
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- jQuery UI JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+    <!-- 郵便番号自動入力のスクリプト -->
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+       <style>
+        .inline {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        legend {
+            font-weight: bold;
+        }
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h1>新規会員登録</h1>
+
+<form class="h-adr">
+    <span class="p-country-name" style="display:none;">Japan</span>
+    
+    <fieldset>
+        <legend>基本情報</legend>
+
+        <label for="last-name">姓 <span class="required">必須</span></label>
+        <input type="text" id="last-name" name="last-name" required placeholder="例：山田">
+
+        <label for="first-name">名 <span class="required">必須</span></label>
+        <input type="text" id="first-name" name="first-name" required placeholder="例：太郎">
+
+        <label for="company">会社名</label>
+        <input type="text" id="company" name="company" placeholder="例：株式会社サンプル">
+    </fieldset>
+
+    <fieldset>
+        <legend>住所</legend>
+
+        <label for="zip">郵便番号 <span class="required">必須</span></label>
+        <input type="tel" class="p-postal-code" id="zip" name="zip" size="8" maxlength="8" pattern="\d{3}-\d{4}" placeholder="123-4567" required>
+
+        <label for="prefecture">都道府県 <span class="required">必須</span></label>
+        <input type="text" class="p-region" id="prefecture" name="prefecture" required placeholder="例：東京都">
+
+        <label for="locality">市区町村 <span class="required">必須</span></label>
+        <input type="text" class="p-locality" id="locality" name="locality" required placeholder="例：新宿区">
+
+        <label for="address">町名番地 <span class="required">必須</span></label>
+        <input type="text" class="p-street-address p-extended-address" id="address" name="address" required placeholder="例：西新宿1-1-1">
+    </fieldset>
+
+    <fieldset>
+        <legend>連絡先</legend>
+
+        <label for="phone">電話番号 <span class="required">必須</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="例：03-1234-5678">
+
+        <label for="email">メールアドレス <span class="required">必須</span></label>
+        <input type="email" id="email" name="email" required placeholder="例：example@example.com">
+
+        <label for="email-confirmation">メールアドレス(確認) <span class="required">必須</span></label>
+        <input type="email" id="email-confirmation" name="email-confirmation" required placeholder="もう一度入力してください">
+    </fieldset>
+
+    <fieldset>
+        <legend>パスワード</legend>
+
+        <label for="password">パスワード <span class="required">必須</span></label>
+        <input type="password" id="password" name="password" required placeholder="パスワードを入力してください">
+
+        <label for="password-confirmation">パスワード(確認) <span class="required">必須</span></label>
+        <input type="password" id="password-confirmation" name="password-confirmation" required placeholder="もう一度入力してください">
+    </fieldset>
+
+    <fieldset>
+        <legend>その他の情報</legend>
+
+          <label for="birthdate">生年月日 <span class="required">必須</span></label>
+    <input type="text" id="birthdate" name="birthdate" required readonly>
+
+    <script>
+        $(function() {
+            $("#birthdate").datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0", // 100年前から現在まで
+                monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+                monthNamesShort: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+                dayNames: ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
+                dayNamesShort: ["日", "月", "火", "水", "木", "金", "土"],
+                dayNamesMin: ["日", "月", "火", "水", "木", "金", "土"],
+                showMonthAfterYear: true,
+                yearSuffix: '年',
+                maxDate: 0, // 今日以降の日付は選択できないようにする
+            });
+        });
+    </script>
+    
+        <label>性別 <span class="required">必須</span></label>
+        <div>
+            <input type="radio" id="male" name="gender" value="男" required class="inline">
+            <label for="male" class="inline">男</label>
+            <input type="radio" id="female" name="gender" value="女" required class="inline">
+            <label for="female" class="inline">女</label>
+        </div>
+
+        <label for="job">職業</label>
+        <select id="job" name="job">
+            <option value="">選択してください</option>
+            <option value="学生">学生</option>
+            <option value="会社員">会社員</option>
+            <!-- 他の職業も追加 -->
+        </select>
+
+        <label>
+            <input type="checkbox" name="terms" required>
+            利用規約に同意して登録する
+        </label>
+    </fieldset>
+
+    <div class="button-container">
+        <button type="submit">同意して登録</button>
+    </div>
+</form>
+
+</body>
+</html>
